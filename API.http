@@ -1,0 +1,200 @@
+### get detectors in db
+GET http://localhost:3000/api/Detectors
+
+###PERSON
+### get person in db
+GET http://localhost:3000/api/get/persons
+
+### get person in db
+GET http://localhost:3000/api/get/verifyPerson/12345
+
+### add person in db
+POST http://localhost:3000/api/post/person
+content-type: application/json
+
+{
+    "accesKey": "12345",
+    "email": "12345@123.ca",
+    "name": "Jean Épa1 6",
+    "phoneNumber": 4500000022,
+    "houseIDList": ["aaa","ddddddd"],
+    "creationDate": "2018-12-10T13:46:00.000Z"
+}
+
+### delete person in db, need personID
+DELETE http://localhost:3000/api/delete/person/60c00d10cf252a3d40790786
+
+### modify person in db, need personID and only the modified info in the JSON
+PUT http://localhost:3000/api/put/person/60c0c306b51c8698186d7769
+content-type: application/json
+
+{
+    "houseIDList": ["60c0c346b51c8698186d776b","60c0d33357e8577e0cf2bc1a"]
+}
+
+### add house to person houseIDList
+PUT http://localhost:3000/api/put/addHouse/60c0c306b51c8698186d7769
+content-type: application/json
+
+{
+    "houseID": "60c126bca89a421544b60f40"
+}
+
+### delete houseId in person in db, need houseID
+PUT http://localhost:3000/api/put/removeHouse/60c0c306b51c8698186d7769
+content-type: application/json
+
+{
+    "houseID": "60c0c346b51c8698186d776b"
+}
+
+
+### HOUSE
+### get house in db
+GET http://localhost:3000/api/get/houses
+
+### get houses of person in db
+PUT http://localhost:3000/api/get/housesPerson
+content-type: application/json
+
+{
+    "houseIDList": ["60c0c346b51c8698186d776b","60c0d33357e8577e0cf2bc1a"]
+}
+
+### get house in db
+GET http://localhost:3000/api/get/house/60c0c346b51c8698186d776b
+
+### add house in db
+POST http://localhost:3000/api/post/house
+content-type: application/json
+
+{
+	"roomIDList" : [
+		"60c10057cb056852c853565c",
+		"60c10061cb056852c853565d",
+		"60c1006fcb056852c853565e",
+		"60c10808ae46e133c810bcfa",
+		"60c10816ae46e133c810bcfb",
+		"60c10832ae46e133c810bcfc",
+		"60c1083aae46e133c810bcfd",
+		"60c10854ae46e133c810bcfe",
+		"60c1085aae46e133c810bcff",
+		"60c1085dae46e133c810bd00"
+	],
+	"familyID" : "1ds23f45ff",
+	"address" : {
+		"street" : "123 fake",
+		"app" : "",
+		"city" : "Montreal",
+		"province" : "Quebec",
+		"postalCode" : "H0H0H0",
+		"country" : "Canada"
+	},
+	"inhabitantNumber" : 4,
+	"buildingYear" : 1972,
+	"garage" : true,
+	"nbFloor" : 2
+}
+### delete house in db, need houseID
+DELETE http://localhost:3000/api/delete/house/60c0d34c57e8577e0cf2bc1d
+
+### modify house in db, need houseID and only the modified info in the JSON
+PUT http://localhost:3000/api/put/house/12345
+content-type: application/json
+
+{
+    "inhabitantNumber": 3
+}
+
+### add room to house roomIDList
+PUT http://localhost:3000/api/put/addRoom/12345
+content-type: application/json
+
+{
+    "roomID": "442asd"
+}
+
+### delete roomID in house in db, need roomID
+PUT http://localhost:3000/api/put/removeRoom/60c0d33357e8577e0cf2bc1a
+content-type: application/json
+
+{
+    "roomID": "ddddsdsddd"
+}
+
+
+### LOCATIONREPORT
+### get locationReport in db
+GET http://localhost:3000/api/get/locationReports
+
+### get locationReport associated with houseID
+GET http://localhost:3000/api/get/getReportRisk/60c126bca89a421544b60f40
+
+### add locationReport in db
+POST http://localhost:3000/api/post/locationReport
+content-type: application/json
+
+{
+    //"locationReportID":"1234564",
+    "houseID":  "12345",
+    "creationDate": "2018-12-10T13:45:00.000Z",
+    "reportValues": {
+        "constructionYear": 1972,
+        "renovation": 0,
+        "basementType": "Habitable",
+        "nbFloors": 3,
+        "garage": true,
+        "liveFlame": true
+    }
+}
+
+### delete locationReport in db, need houseID
+DELETE http://localhost:3000/api/delete/locationReport/60c0f4a6ee3d8e8844368bd6
+
+### modify locationReport in db, need houseID and only the modified info in the JSON
+PUT http://localhost:3000/api/put/locationReport/12345
+content-type: application/json
+
+{
+    "houseID":  "1234512"
+}
+
+### modify locationReport in db, need houseID and only the modified info in the JSON
+PUT http://localhost:3000/api/put/changeReportValues/123abc
+content-type: application/json
+
+{
+    "reportValues": {
+        "nbFloor": 5
+    }
+}
+
+
+### ROOM
+### get rooms in db
+GET http://localhost:3000/api/get/rooms
+
+### add room in db
+POST http://localhost:3000/api/post/room
+content-type: application/json
+
+{
+    "roomID":"1234564",
+    "roomType":  "bedroom",
+    "roomName": "Chambre 1",
+    "equipmentList": ["ddddd","ddddsdsddd"],
+    "floor":  1
+    
+}
+
+### delete room in db, need roomID
+DELETE http://localhost:3000/api/delete/room/1234564
+
+### modify room in db, need roomID and only the modified info in the JSON
+PUT http://localhost:3000/api/put/room/1234564
+content-type: application/json
+
+{
+    "roomType":  "kitchen",
+    "roomName": "cuisine 1"
+}
